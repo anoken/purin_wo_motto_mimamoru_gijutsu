@@ -203,16 +203,11 @@ while True:
         x,y,z=SH200I_acc_read()
     elif devices==[52,104]: #MPU6866
         x,y,z=MPU6866_read()
-
     accel_array = [x, y, z]
     rot_theta=0.5*rot_theta-0.5*math.atan2(accel_array[1], -accel_array[0])
-
     img = image.Image()
     draw_face(img,rot_theta,cnt)
     lcd.display(img)
     cnt+=1
     if cnt>200:
         cnt=0
-#    rot_theta=rot_theta+0.051
-
-
