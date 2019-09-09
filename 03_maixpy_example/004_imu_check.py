@@ -1,4 +1,5 @@
-## Copyright (c) 2019 aNoŒ¤ ƒvƒŠƒ“‚ğ‚à‚Á‚ÆŒ©ç‚é‹Zp 
+## Copyright (c) 2019 aNoken 
+## https://anoken.jimdo.com/
 ## https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu
 
 from machine import I2C
