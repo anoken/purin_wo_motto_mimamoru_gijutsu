@@ -7,8 +7,10 @@
 「プリンをもっと見守る技術 --M5StickVで始めるAIの世界--」のサポートページです。
 
 本書は、
-技術書典７で
-https://techbookfest.org/event/tbf07
+技術書典７ aNo研（アノケン）ブース(け34D)
+<br> 
+https://techbookfest.org/event/tbf07/circle/6244661987377152
+<br> 
 で頒布予定です。
 
 
