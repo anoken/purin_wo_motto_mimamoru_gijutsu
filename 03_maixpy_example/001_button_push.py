@@ -5,7 +5,7 @@
 
 import lcd
 from Maix import I2S, GPIO
-from fpioa_manager import *
+from fpioa_manager import fm
 
 lcd.init()
 fm.register(board_info.BUTTON_A, fm.fpioa.GPIO1)
