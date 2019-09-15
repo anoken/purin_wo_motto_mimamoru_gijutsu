@@ -1,6 +1,6 @@
 # purin_wo_motto_mimamoru_gijutsu
 
-<img src="https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu/blob/master/image/title_s.png" width="500">
+<img src="https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu/blob/master/image/title_s.png" width="400">
 
 ## タイトル  
 「プリンをもっと見守る技術 --M5StickVで始めるAIの世界--」のサポートページです。
