@@ -1,3 +1,7 @@
+## Copyright (c) 2019 aNoken
+## https://anoken.jimdo.com/
+## https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu
+
 from __future__ import print_function
 import keras
 from keras.datasets import mnist
