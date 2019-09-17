@@ -88,7 +88,7 @@ def plot_graph(history):
 	plt.ylabel('accuracy')
 	plt.legend(loc='best')
 	plt.savefig('./acc_graph.png')
-#	plt.show()
+	plt.show()
 	plt.clf()
 	plt.plot(epochs,history.history['loss'], marker='.', label='loss')
 	plt.plot(epochs,history.history['val_loss'], marker='.', label='val_loss')
@@ -99,8 +99,8 @@ def plot_graph(history):
 	plt.ylabel('loss')
 	plt.legend(loc='best')
 	plt.savefig('./loss_graph.png')
-#	plt.show()
-	
+	plt.show()
+
 plot_graph(history)
 
 
