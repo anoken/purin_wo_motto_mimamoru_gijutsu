@@ -1,6 +1,9 @@
 ## Copyright (c) 2019 aNoken
 ## https://anoken.jimdo.com/
 ## https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu
+## This code based on "Train, Convert, Run MobileNet on Sipeed MaixPy and MaixDuino"
+## http://blog.sipeed.com/p/680.html
+
 
 import keras
 import numpy as np
