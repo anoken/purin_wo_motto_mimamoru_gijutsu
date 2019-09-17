@@ -23,6 +23,7 @@ IMAGE_HEIGHT = 224
 TRAINING_DIR = 'dataset/train'
 VALIDATION_DIR = 'dataset/vaild'
 
+# 画像データの読み込み
 imageGen=ImageDataGenerator(preprocessing_function=preprocess_input)
 
 train_generator=imageGen.flow_from_directory(TRAINING_DIR,
@@ -33,13 +34,12 @@ validation_generator=imageGen.flow_from_directory(VALIDATION_DIR,
 	target_size=(IMAGE_WIDTH,IMAGE_HEIGHT),color_mode='rgb',
 	batch_size=5,class_mode='categorical')
 
-
+# MobileNet モデルの読み込み
 base_model=MobileNet(input_shape=(IMAGE_WIDTH, IMAGE_HEIGHT, 3), alpha = 0.75,depth_multiplier = 1,
  dropout = 0.001,include_top = False, weights = "imagenet", classes = 1000, backend=keras.backend, 
  layers=keras.layers,models=keras.models,utils=keras.utils)
 
-# Additional Layers
-
+# 出力層の追加
 x=base_model.output
 x=GlobalAveragePooling2D()(x)
 x=Dense(100,activation='relu')(x)#
@@ -55,12 +55,16 @@ for i,layer in enumerate(mbnetModel.layers):
 for layer in base_model.layers:
     layer.trainable = False
 
+# モデル構成の表示
 mbnetModel.summary()
+
+# アルゴリズムを設定
 mbnetModel.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
 step_size_train = (train_generator.n//train_generator.batch_size)
 validation_steps = (train_generator.n//train_generator.batch_size)
 
+# 学習開始
 history=mbnetModel.fit_generator(generator=train_generator, 
 	steps_per_epoch=step_size_train, epochs=50, 
 	validation_data = validation_generator,validation_steps = validation_steps, verbose = 1)
@@ -98,17 +102,16 @@ plot_graph(history)
 
 
 
-
+#Keras モデル形式で保存
 mbnetModel.save('my_mbnet.h5')
 
+#Keras->TensorFlowLite 形式に変換
 converter = tf.lite.TFLiteConverter.from_keras_model_file('my_mbnet.h5')
 tflite_model = converter.convert()
 open('my_mbnet.tflite', "wb").write(tflite_model)
 
+#TensorFlowLite->kmodel 形式に変換
 import subprocess
 subprocess.run(['./ncc/ncc','my_mbnet.tflite','my_mbnet.kmodel','-i','tflite','-o',
 'k210model','--dataset','images'])
-
-
-
 
