@@ -1,7 +1,11 @@
 ## Copyright (c) 2019 aNoken
 ## https://anoken.jimdo.com/
 ## https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu
-
+## Keras MNIST Example:
+## This was based on keras mnist exampple
+## https://github.com/keras-team/keras/
+	
+	
 from __future__ import print_function
 import keras
 from keras.datasets import mnist
