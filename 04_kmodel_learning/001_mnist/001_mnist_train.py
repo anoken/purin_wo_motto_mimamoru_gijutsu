@@ -10,12 +10,15 @@ from keras.layers import Dense,Dropout,Flatten
 from keras.layers import Conv2D, MaxPooling2D, ZeroPadding2D
 from keras import backend as K
 import tensorflow as tf
+from matplotlib import pyplot as plt
 
+#パラメータ
 batch_size = 128
 num_classes = 10
 epochs = 10
 img_rows, img_cols = 28, 28
 
+# MNIST モデルを読み込み・整形
 def prepare_mnist_data():
 	(x_train, y_train), (x_test, y_test) = mnist.load_data()
 
@@ -60,28 +63,28 @@ def create_mnist_model(input_shape=(img_rows, img_cols, 1), num_classes=10):
 	model.add(Dense(num_classes, activation='softmax'))
 	return model
 model = create_mnist_model()
+
+# モデル構成を表示
 model.summary()
 
-
+# アルゴリズムを設定
 model.compile(loss=keras.losses.categorical_crossentropy,
               optimizer=keras.optimizers.Adadelta(),
               metrics=['accuracy'])
 
-
-
 for layer in model.layers:
 	print(layer.name)
-  
+
+# 学習開始
 history=model.fit(x_train, y_train, batch_size=batch_size,
           epochs=epochs,verbose=1,
           validation_data=(x_test, y_test))
-          
+
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
 
-from matplotlib import pyplot as plt
-
+# 結果をグラフで表示
 def plot_graph(history):
 	epochs = range(len(history.history['acc']))
 
@@ -109,12 +112,15 @@ def plot_graph(history):
 	
 plot_graph(history)
 
+#Keras モデル形式で保存
 model.save("mnist.h5")
 
+#Keras->TensorFlowLite 形式に変換
 converter = tf.lite.TFLiteConverter.from_keras_model_file('mnist.h5')
 tflite_model = converter.convert()
 open('mnist.tflite', "wb").write(tflite_model)
 
+#TensorFlowLite->kmodel 形式に変換
 import subprocess
 subprocess.run(['./ncc/ncc','mnist.tflite','mnist.kmodel','-i','tflite','-o',
 'k210model','--dataset','images'])
