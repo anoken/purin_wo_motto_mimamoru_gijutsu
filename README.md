@@ -24,7 +24,8 @@ M5Stackから新しく登場したパワフルなデバイスM5StickVでご家�
 
 あなたもM5StickVで、AIの世界を体験してみませんか！？
 <br> 
-
+https://www.youtube.com/watch?v=yAmb7WrwOfs
+  
 ## 目次
 
 第1章 M5StickVの紹介 
