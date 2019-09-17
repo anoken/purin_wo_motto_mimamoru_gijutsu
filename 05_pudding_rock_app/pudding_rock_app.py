@@ -1,6 +1,7 @@
 ## Copyright (c) 2019 aNoken 
 ## https://anoken.jimdo.com/
 ## https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu
+## Video https://youtu.be/yAmb7WrwOfs
 
 import sensor,image,lcd,time
 from fpioa_manager import fm, board_info
