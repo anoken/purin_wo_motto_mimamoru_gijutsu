@@ -25,8 +25,7 @@ M5Stackから新しく登場したパワフルなデバイスM5StickVでご家�
 あなたもM5StickVで、AIの世界を体験してみませんか！？
 <br> 
 
-[![Watch the video](https://img.youtube.com/vi/yAmb7WrwOfs/maxresdefault.jpg)](https://youtu.be/yAmb7WrwOfs)
-<br> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yAmb7WrwOfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br> 
 
 
 ## 目次
