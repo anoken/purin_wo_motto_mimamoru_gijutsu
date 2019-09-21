@@ -10,6 +10,9 @@
 <br> 
 https://techbookfest.org/event/tbf07/circle/6244661987377152
 <br> 
+Booth aNo研
+https://anoken.booth.pm/items/1563336
+<br> 
 で頒布予定です。
 
 
