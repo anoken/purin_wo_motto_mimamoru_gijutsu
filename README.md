@@ -6,16 +6,16 @@
 「プリンをもっと見守る技術 --M5StickVで始めるAIの世界--」のサポートページです。
 
 本書は、
-技術書典７ aNo研（アノケン）ブース(け34D)
 <br> 
-https://techbookfest.org/event/tbf07/circle/6244661987377152
-<br> 
-Booth 
+BOOTH
 <br> 
 https://anoken.booth.pm/items/1563336
 <br> 
-で頒布します。
-
+とらのあな
+<br> 
+https://ec.toranoana.shop/tora/ec/item/040030776779
+<br> 
+取り扱っています。
 
 ## 紹介
 せっかく楽しみに取っておいたプリンが食べられてしまった！そんな経験はありませんか？
