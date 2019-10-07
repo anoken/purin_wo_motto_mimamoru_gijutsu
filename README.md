@@ -32,10 +32,10 @@ M5Stackから新しく登場したパワフルなデバイスM5StickVでご家�
 
 ## 目次
 
-第1章 M5StickVの紹介 
-1.1 M5StickVとは？
-1.2 SiPEED MAiXとは？
-1.3 Kendryte K210とは？
+第1章 M5StickVの紹介  
+1.1 M5StickVとは？ 
+1.2 SiPEED MAiXとは？ 
+1.3 Kendryte K210とは？ 
 
 第2章 M5StickVを使ってみる 
 2.1 M5StickVの開発環境
