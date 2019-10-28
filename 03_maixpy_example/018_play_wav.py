@@ -6,17 +6,16 @@ from fpioa_manager import *
 from Maix import I2S, GPIO
 import audio
 
-##ƒXƒs[ƒJ‚Ì‰Šú‰»
-def init_wav():
-    fm.register(board_info.SPK_SD, fm.fpioa.GPIO0)
-    spk_sd=GPIO(GPIO.GPIO0, GPIO.OUT)
-    spk_sd.value(1)
-    fm.register(board_info.SPK_DIN,fm.fpioa.I2S0_OUT_D1)
-    fm.register(board_info.SPK_BCLK,fm.fpioa.I2S0_SCLK)
-    fm.register(board_info.SPK_LRCLK,fm.fpioa.I2S0_WS)
-    wav_dev = I2S(I2S.DEVICE_0)
+##ã‚¹ãƒ”ãƒ¼ã‚«ã®åˆæœŸåŒ–
+fm.register(board_info.SPK_SD, fm.fpioa.GPIO0)
+spk_sd=GPIO(GPIO.GPIO0, GPIO.OUT)
+spk_sd.value(1)
+fm.register(board_info.SPK_DIN,fm.fpioa.I2S0_OUT_D1)
+fm.register(board_info.SPK_BCLK,fm.fpioa.I2S0_SCLK)
+fm.register(board_info.SPK_LRCLK,fm.fpioa.I2S0_WS)
+wav_dev = I2S(I2S.DEVICE_0)
 
-##wavƒtƒ@ƒCƒ‹‚ÌÄ¶
+##wavãƒ•ã‚¡ã‚¤ãƒ«ã®å†ç”Ÿ
 def play_wav(fname):
     player = audio.Audio(path = fname)
     player.volume(20)
@@ -39,7 +38,7 @@ but_a_pressed = 0
 
 while True:
     if but_a.value() == 0 and but_a_pressed == 0:
-        play_sound("reset.wav")
+        play_wav("reset.wav")
         but_a_pressed=1
     if but_a.value() == 1 and but_a_pressed == 1:
         but_a_pressed=0
