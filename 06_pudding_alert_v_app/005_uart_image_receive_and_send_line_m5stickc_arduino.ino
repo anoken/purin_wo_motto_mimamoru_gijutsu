@@ -84,8 +84,6 @@ void setup_wifi() {
 
 //Line通知
 void sendLineNotify(uint8_t* image_data, size_t image_sz) {
-  const char* host = "notify-api.line.me";
-  const char* token = "p6OAaRrs4jf0MrTkPoVCgF88YKtjqNLND2BgloLSo0m";
 
   WiFiClientSecure client;
   if (!client.connect(host, 443))   return;
