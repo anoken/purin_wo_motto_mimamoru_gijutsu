@@ -2,6 +2,16 @@
 ## https://anoken.jimdo.com/
 ## https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu
 
+#Maixpyの特定versionでmobilenetv1 1000-Class が読めない場合があります。
+#task = kpu.load("mbnet751.kmodel") or task = kpu.load(0x200000)
+# SYSCALL: Out of memory
+# ValueError: [MAIXPY]kpu: load error:6
+# が発生。
+#○:maixpy_v0.4.0_44_g95f00f0
+#○:maixpy_v0.4.0_47_g39bb8bf
+#×:maixpy_v0.4.0_49_g8279a1f
+#×:maixpy_v0.4.0_82_gc3327b5
+#https://github.com/sipeed/MaixPy/issues/180
 
 import sensor, image, lcd, time
 import KPU as kpu
