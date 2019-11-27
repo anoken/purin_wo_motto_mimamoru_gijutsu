@@ -1,4 +1,4 @@
-## Copyright (c) 2019 aNoken 
+## Copyright (c) 2019 aNoken
 ## https://anoken.jimdo.com/
 ## https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu
 
@@ -6,6 +6,7 @@
 import lcd
 from Maix import I2S, GPIO
 from fpioa_manager import fm
+from board import board_info
 
 lcd.init()
 fm.register(board_info.BUTTON_A, fm.fpioa.GPIO1)
