@@ -5,7 +5,7 @@ tflite_out=$name.tflite
 kmodel_out=$name.kmodel
 
 #nncase
-ncc_exe=./nncase/ncc
+ncc_exe=./ncc/ncc
 
 echo ">> Converting TFlite to Kmodel"
 $ncc_exe compile $tflite_out ./$kmodel_out -i tflite -o kmodel -t k210 --dataset dataset-all
