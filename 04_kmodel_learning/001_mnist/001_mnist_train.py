@@ -62,7 +62,7 @@ def create_mnist_model(input_shape=(img_rows, img_cols, 1), num_classes=10):
 
 	model.add(Dropout(0.25))
 	model.add(Flatten())
-	model.add(Dense(64, activation='relu')) 
+	model.add(Dense(32, activation='relu')) 
 	model.add(Dropout(0.5))
 	model.add(Dense(num_classes, activation='softmax'))
 	return model
