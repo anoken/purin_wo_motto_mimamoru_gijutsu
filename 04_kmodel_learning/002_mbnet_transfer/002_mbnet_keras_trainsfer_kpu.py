@@ -1,38 +1,45 @@
-## Copyright (c) 2019 aNoken 
+## Copyright (c) 2019 aNoken
 ## https://anoken.jimdo.com/
 ## https://github.com/anoken/purin_wo_motto_mimamoru_gijutsu
-## This Code is Miaxpy
 
+#Maixpyの特定versionでmobilenetv1 1000-Class が読めない場合があります。
+#task = kpu.load("mbnet751.kmodel") or task = kpu.load(0x200000)
+# SYSCALL: Out of memory
+# ValueError: [MAIXPY]kpu: load error:6
+# が発生した場合、v0.4.0_47以前であれば動作します。
+#○:maixpy_v0.4.0_44_g95f00f0
+#○:maixpy_v0.4.0_47_g39bb8bf
+#×:maixpy_v0.4.0_49_g8279a1f
+#×:maixpy_v0.4.0_82_gc3327b5
+#https://github.com/sipeed/MaixPy/issues/180
 
-import sensor,image,lcd,time
+import sensor, image, lcd, time
 import KPU as kpu
-
 lcd.init()
 lcd.rotation(2)
-import lcd  #for test
+lcd.clear()
+
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
 sensor.set_framesize(sensor.QVGA)
+sensor.set_windowing((224, 224))
 sensor.run(1)
+lcd.draw_string(100,96,"MobileNet Demo")
+lcd.draw_string(100,112,"Loading labels...")
+f=open('labels.txt','r')
+labels=f.readlines()
+f.close()
+task = kpu.load("mbnet751.kmodel")
 clock = time.clock()
-classes = ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor']
-task = kpu.load("20class.kmodel")
-anchor = (1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52)
-a = kpu.init_yolo2(task, 0.5, 0.3, 5, anchor)
 while(True):
-    clock.tick()
     img = sensor.snapshot()
-    code = kpu.run_yolo2(task, img)
-    print(clock.fps())
-    if code:
-        for i in code:
-            a=img.draw_rectangle(i.rect())
-            a = lcd.display(img)
-            for i in code:
-                lcd.draw_string(i.x(), i.y(),
-                classes[i.classid()], lcd.RED, lcd.WHITE)
-                lcd.draw_string(i.x(), i.y()+12,
-                '%f1.3'%i.value(), lcd.RED, lcd.WHITE)
-    else:
-        a = lcd.display(img)
+    clock.tick()
+    fmap = kpu.forward(task, img)
+    fps=clock.fps()
+    plist=fmap[:]
+    pmax=max(plist)
+    max_index=plist.index(pmax)
+    a = lcd.display(img)
+    lcd.draw_string(10, 96, "%.2f:%s"%(pmax, labels[max_index].strip()))
+    print(fps)
 a = kpu.deinit(task)
