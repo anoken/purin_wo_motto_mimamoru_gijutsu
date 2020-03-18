@@ -11,10 +11,6 @@ BOOTH
 <br> 
 https://anoken.booth.pm/items/1563336
 <br> 
-とらのあな
-<br> 
-https://ec.toranoana.shop/tora/ec/item/040030776779
-<br> 
 取り扱っています。
 
 ## 紹介
