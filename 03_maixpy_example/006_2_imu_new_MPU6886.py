@@ -18,7 +18,7 @@ i2c_cs = GPIO(GPIO.GPIO7, GPIO.OUT)
 i2c_cs.value(1)
 
 fm.register(24, fm.fpioa.GPIO8)
-i2c_cs = GPIO(GPIO.GPIO7, GPIO.OUT)
+i2c_cs = GPIO(GPIO.GPIO8, GPIO.OUT)
 i2c_cs.value(0)
 
 i2c = I2C(I2C.I2C0, freq=400000, scl=26, sda=27)
