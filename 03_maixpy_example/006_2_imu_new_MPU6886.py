@@ -7,7 +7,7 @@
 from machine import I2C
 import lcd
 
-#I2C G26, G27‚ÉAMPU6886‚ÌƒAƒhƒŒƒX[104]‚ª‚ ‚é‚±‚Æ‚ğŠm”F
+#I2C G26, G27ã«ã€MPU6886ã®ã‚¢ãƒ‰ãƒ¬ã‚¹[104]ãŒã‚ã‚‹ã“ã¨ã‚’ç¢ºèª
 i2c = I2C(I2C.I2C0, freq=400000, scl=28, sda=29)
 devices = i2c.scan()
 print("I2C G28, G29")
@@ -16,13 +16,17 @@ print(devices)
 fm.register(25, fm.fpioa.GPIO7)
 i2c_cs = GPIO(GPIO.GPIO7, GPIO.OUT)
 i2c_cs.value(1)
+
+fm.register(24, fm.fpioa.GPIO8)
+i2c_cs = GPIO(GPIO.GPIO7, GPIO.OUT)
+i2c_cs.value(0)
+
 i2c = I2C(I2C.I2C0, freq=400000, scl=26, sda=27)
 devices = i2c.scan()
 print("I2C G26, G27")
 print(devices)
 
-
-#MPU6886‚ÌƒŒƒWƒXƒ^
+#MPU6886ã®ãƒ¬ã‚¸ã‚¹ã‚¿
 MPU6886_ADDRESS=0x68
 MPU6886_WHOAMI=0x75
 MPU6886_ACCEL_INTEL_CTRL=  0x69
@@ -42,12 +46,12 @@ MPU6886_ACCEL_CONFIG2= 0x1D
 MPU6886_FIFO_EN=   0x23
 
 
-#I2C‚Ö‘‚«‚İ
+#I2Cã¸æ›¸ãè¾¼ã¿
 def write_i2c(address, value):
     i2c.writeto_mem(MPU6886_ADDRESS, address, bytearray([value]))
     time.sleep_ms(10)
 
-#MPU6866‚Ì‰Šú‰»
+#MPU6866ã®åˆæœŸåŒ–
 def MPU6866_init():
     write_i2c(MPU6886_PWR_MGMT_1, 0x00)
     write_i2c(MPU6886_PWR_MGMT_1, 0x01<<7)
@@ -63,7 +67,7 @@ def MPU6866_init():
     write_i2c(MPU6886_INT_PIN_CFG,0x22)
     write_i2c(MPU6886_INT_ENABLE,0x01)
 
-#MPU6866‚©‚ç‚Ì“Ç‚İo‚µ
+#MPU6866ã‹ã‚‰ã®èª­ã¿å‡ºã—
 def MPU6866_read():
     accel = i2c.readfrom_mem(MPU6886_ADDRESS, MPU6886_ACCEL_XOUT_H, 6)
     accel_x = (accel[0]<<8|accel[1])
@@ -77,7 +81,7 @@ def MPU6866_read():
         accel_z=accel_z-65536
     return accel_x,accel_y,accel_z
 
-#ƒƒCƒ“‚Ìˆ—‚Í‚±‚±‚©‚çŠJn
+#ãƒ¡ã‚¤ãƒ³ã®å‡¦ç†ã¯ã“ã“ã‹ã‚‰é–‹å§‹
 MPU6866_init()
 lcd.init()
 lcd.clear()
